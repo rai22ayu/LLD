@@ -23,6 +23,8 @@ public class MeetingRoomScheduler {
     }
 
     public void cancelMeeting(Integer meetingId){
+
+        //TODO find meeting object from meeting id -> get the meeting root and free up the slot
         for (MeetingRoom room : meetingRooms) {
             room.removeMeeting(meetingId);
         }
