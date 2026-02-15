@@ -14,7 +14,7 @@ public abstract class ParkingSpotManager {
     public void addParkingSpot(ParkingSpot parkingSpot) {
         parkingSpotList.add(parkingSpot);
     }
-    public void removeParkingSpot(ParkingSpot parkingSpot) {
+    public void freeUpParkingSpot(ParkingSpot parkingSpot) {
         parkingSpot.removeVehicle();
     }
     public ParkingSpot findParkingSpot(Vehicle vehicle, Integer entranceGate) {

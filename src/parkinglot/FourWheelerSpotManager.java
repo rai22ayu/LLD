@@ -10,12 +10,14 @@ public class FourWheelerSpotManager extends ParkingSpotManager{
         super(createParkingSpotList(), new DefaultStrategy());
     }
 
-    public static synchronized FourWheelerSpotManager getInstance(){
-        if(instance == null){
-            instance = new FourWheelerSpotManager();
-        }
-        return instance;
+    public static final class FourWheelerSpotManagerInstance{
+        private static final FourWheelerSpotManager instance = new FourWheelerSpotManager();
     }
+
+    public static synchronized FourWheelerSpotManager getInstance(){
+        return FourWheelerSpotManagerInstance.instance;
+    }
+
     private static List<ParkingSpot> createParkingSpotList() {
         List<ParkingSpot> parkingSpotList = new ArrayList<>();
         // Add ParkingSpot objects to the list

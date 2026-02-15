@@ -10,12 +10,17 @@ public class TwoWheelerSpotManager extends ParkingSpotManager{
         super(createParkingSpotList(), new NearToEntranceStrategy());
     }
 
-    public static synchronized TwoWheelerSpotManager getInstance(){
+    public static TwoWheelerSpotManager getInstance(){
         if(instance == null){
-            instance = new TwoWheelerSpotManager();
+            synchronized (TwoWheelerSpotManager.class){
+                if(instance == null){
+                    instance = new TwoWheelerSpotManager();
+                }
+            }
         }
         return instance;
     }
+
     private static List<ParkingSpot> createParkingSpotList() {
         List<ParkingSpot> parkingSpotList = new ArrayList<>();
         // Add ParkingSpot objects to the list

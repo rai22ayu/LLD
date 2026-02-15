@@ -3,13 +3,14 @@ package parkinglot;
 public class ExitGate {
     private final Ticket ticket;
     private final Calculator calculator;
-    private CostCalculatorFactory costCalculatorFactory;
+    private final CostCalculatorFactory costCalculatorFactory;
     private final Payment payment;
     private final ParkingSpotManager parkingSpotManager;
-    private ParkingFactory parkingFactory;
+    private final ParkingFactory parkingFactory;
 
-    public ExitGate(Ticket ticket, Payment payment, ParkingFactory parkingFactory) {
+    public ExitGate(Ticket ticket, CostCalculatorFactory costCalculatorFactory, Payment payment, ParkingFactory parkingFactory) {
         this.ticket = ticket;
+        this.costCalculatorFactory = costCalculatorFactory;
         this.payment = payment;
         this.calculator = costCalculatorFactory.getCostCalculator(ticket);
         this.parkingFactory = parkingFactory;
@@ -23,6 +24,6 @@ public class ExitGate {
         payment.pay();
     }
     public void freeUpSpace(){
-        parkingSpotManager.removeParkingSpot(ticket.getParkingSpot());
+        parkingSpotManager.freeUpParkingSpot(ticket.getParkingSpot());
     }
 }
